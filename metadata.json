@@ -1,5 +1,5 @@
 {
-  "name": "串口助手软件-EddyTest",
+  "name": "EddyTest",
   "description": "A professional Serial Port Assistant with Hex auto-increment logic and real-time data visualization.",
   "requestFramePermissions": []
 }

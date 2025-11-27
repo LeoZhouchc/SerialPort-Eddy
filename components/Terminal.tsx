@@ -1,13 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { LogEntry } from '../types';
-import { ArrowDown, ArrowUp, Info, AlertCircle } from 'lucide-react';
+import { ArrowDown, ArrowUp, Info, AlertCircle, Save } from 'lucide-react';
 
 interface TerminalProps {
   logs: LogEntry[];
   clearLogs: () => void;
+  onExport: () => void;
 }
 
-export const Terminal: React.FC<TerminalProps> = ({ logs, clearLogs }) => {
+export const Terminal: React.FC<TerminalProps> = ({ logs, clearLogs, onExport }) => {
   const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -18,12 +19,21 @@ export const Terminal: React.FC<TerminalProps> = ({ logs, clearLogs }) => {
     <div className="flex flex-col h-full bg-black rounded-lg border border-slate-800 font-mono text-sm shadow-inner">
       <div className="flex justify-between items-center px-4 py-2 bg-slate-900 border-b border-slate-800">
         <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">Terminal</span>
-        <button 
-          onClick={clearLogs}
-          className="text-xs text-slate-500 hover:text-red-400 transition-colors"
-        >
-          Clear
-        </button>
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={onExport}
+            className="flex items-center gap-1 text-xs text-slate-500 hover:text-blue-400 transition-colors"
+            title="Export all logs to file"
+          >
+            <Save size={14} /> Export
+          </button>
+          <button 
+            onClick={clearLogs}
+            className="text-xs text-slate-500 hover:text-red-400 transition-colors"
+          >
+            Clear
+          </button>
+        </div>
       </div>
       <div className="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar">
         {logs.length === 0 && (

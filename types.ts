@@ -13,9 +13,8 @@ export interface LogEntry {
 }
 
 export interface ChartDataPoint {
-  time: string;
-  sentValue: number | null;
-  receivedValue: number | null;
+  x: number; // Frequency (kHz)
+  y: number; // Received Value
 }
 
 export enum ConnectionStatus {
